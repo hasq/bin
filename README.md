@@ -1,1 +1,1 @@
-# bin
+# Release binary files
