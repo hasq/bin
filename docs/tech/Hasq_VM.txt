@@ -1,0 +1,79 @@
+How to install Hasq server software on a virtual machine using ISO image
+------------------------------------------------------------------------
+
+This instruction is for VMware Player v6.0.1. If other version is used,
+the following steps should be considered as a guide only.
+
+1. Run VMware Player
+2. Click on Create a New Virtual Machine
+3. Make the following selections
+
+   Welcome to the New Virtual Machine Wizard
+     Installer disc image file (iso)
+     "Browse..."
+       Select ISO file downloaded from website
+       "Open"
+     "Next >"
+
+   Select a Guest Operating System
+     Guest Operating System: Linux
+     Version: Other Linux 2.6.x kernel
+     "Next >"
+
+   Name the Virtual Machine
+     Virtual machine name: type any name
+     "Next >"
+
+   Specify Disk Capacity
+     Store virtual disk as a single file
+       (Note: if your version of VMware Player allows to choose virtual
+        disk type, IDE must be chosen)
+     "Next >"
+
+   Ready to Create Virtual Machine
+     "Customize Hardware..."
+       Memory
+         Memory for this virtual machine: 512MB
+       "Close"
+     "Finish"
+
+4. Check settings of the created virtual machine. Hard disk type must be IDE.
+   If it's not, remove this disk and add a new IDE disk.
+
+5. Start Virtual Machine 
+
+   The booting program waits for 10 seconds giving time to interrupt and
+   enter a console or interactive mode. If no key is pressed, it starts
+   and finds a hard disk without partitions:
+
+     /dev/sda - NO PARTITION
+
+   It then asks if user wants to create a new partition:
+
+     Do you want to create partition on /dev/sda? (yes): _
+
+   Pressing <enter> serves as confirmation. After the partition is created
+   the following message is displayed:
+
+     Do you want to reboot [yes: reboot, no: enter shell] ? (yes) : _
+
+   Pressing <enter> reboots the system. After the reboot the new hard disk is ready:
+
+     /dev/sda1 - ext4
+
+   The booting program now searches for the configuration file:
+
+     No configuration found on hard drives
+     Use default CD configuration as is ? (yes) : _
+
+   If "n" is answered, the booting program starts asking a series of questions
+   in order to create the server configuration file. Alternatively, press <enter>
+   to use the default configuration. After the configuration file is created,
+   the system reboots again.
+
+   After the next restart, the server database will be automatically created
+   and hasqd executable will be run. From this moment on the server is fully
+   operational.
+
+   The booting program can be interrupted to enter the interactive mode to customize
+   system and/or Hasq server settings by simply following the instructions.
